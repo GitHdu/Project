@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .banner{
+        position: relative;
+        height: 396px;
+        overflow: hidden;
+    }
+    .banner ul{
+        width: 400%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        list-style: none;
+    }
+    .banner ul li{
+        width: 25%;
+        height: 396px;
+        float: left;
+    }
+    .banner ol{
+        width: 68px;
+        height: 22px;
+        background: rgba(0,0,0,0.7);
+        position: absolute;
+        left: 50%;
+        margin-left: -64px;
+        bottom: 18px;
+        padding: 0 20px;
+        list-style: none;
+        border-radius: 11px;
+    }
+    .banner ol li{
+        width: 12px;
+        height: 12px;
+        background: rgba(255,255,255,0.7);
+        border-radius: 50%;
+        margin: 5px;
+        float: left;
+        cursor: pointer;
+    }
+    .banner .active{
+        background: #fff;
+    }
+    .left,.right{
+        position: absolute;
+        color: #fff;
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        font-size: 60px;
+        top: 50%;
+        margin-top: -30px;
+        opacity: 0.1;
+        background: rgba(0,0,0,0.6);
+        text-align: center;
+        line-height: 60px;
+        cursor: pointer;
+    }
+    .left:hover,.right:hover{
+        opacity: 0.8;
+    }
+    .left{
+        left: 20px;
+    }
+    .right{
+        right: 20px;
+    }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <ul>
+            <li><img src="img/1.jpg" alt="" /></li>
+            <li><img src="img/2.jpg" alt="" /></li>
+            <li><img src="img/3.jpg" alt="" /></li>
+            <li><img src="img/1.jpg" alt="" /></li>
+        </ul>
+        <ol>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <div class="left"><</div>
+        <div class="right">></div>
+    </div>
+    <script src="jquery-1.10.1.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        var w=$(window).width();
+        $('.banner ul li').width(w);
+
+        $('.banner ol li').click(function() {
+            $(this).addClass('active').siblings('li').removeClass('active');
+
+            var i = $(this).index();
+            num = i;
+            $(".banner ul").stop().animate({
+                left: -i * w},
+                500);
+        });
+
+        var timer = null;
+        var num = 0;//图片累加器
+        var autoPlay = function () {
+            num++;
+            if(num>3){
+                num =0;
+                $(".banner ul").css('left',0).stop().animate({ left: -w},500);
+                $(".banner ol li").eq(1).addClass('active').siblings('li').removeClass('active');
+                num =1;
+            }else{
+             $(".banner ul").stop().animate({ left: -num*w}, 500);
+             $(".banner ol li").eq(num).addClass('active').siblings('li').removeClass('active');
+         }
+         if( num == 3 ){
+            $(".banner ol li").eq(0).addClass('active').siblings('li').removeClass('active');
+         }
+        };
+        var prevPlay = function () {
+            num--;
+            if(num<0){
+                num =3;
+                $(".banner ul").css({left:-3*w}).stop().animate({ left: -2*w},500);
+                $(".banner ol li").eq(2).addClass('active').siblings('li').removeClass('active');
+                num =2;
+            }else{
+             $(".banner ul").stop().animate({ left: -num*w}, 500);
+             $(".banner ol li").eq(num).addClass('active').siblings('li').removeClass('active');
+         }
+         if( num == 3 ){
+            $(".banner ol li").eq(0).addClass('active').siblings('li').removeClass('active');
+         }
+        };
+
+        timer = setInterval( autoPlay , 1000);
+
+        $('.banner').mouseenter(function() {
+            clearInterval(timer);
+        }).mouseleave(function() {
+            timer = setInterval( autoPlay , 1000);
+        });;
+
+        $('.banner .right').click(function() {
+                autoPlay();
+        });
+
+         $('.banner .left').click(function() {
+            prevPlay();
+         });
+    })
+    </script>
+</body>
+</html>
