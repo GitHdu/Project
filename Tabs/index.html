@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Tab</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #ccc;
+        padding: 100px;
+        font-size: 12px;
+    }
+
+    ul,
+    li {
+        list-style: none;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="tab js-tab" data-config='{
+        "triggerType": "click",
+        "effect": "fade",
+        "invoke": 2,
+        "auto": 1000
+    }'>
+        <ul class="tab-nav">
+            <li class="actived"><a href="javascript:void(0)">Home</a></li>
+            <li><a href="javascript:void(0)">News</a></li>
+            <li><a href="javascript:void(0)">Tech</a></li>
+            <li><a href="javascript:void(0)">About</a></li>
+        </ul>
+        <div class="content-wrap">
+            <div class="content-item current">this is home</div>
+            <div class="content-item">this is news</div>
+            <div class="content-item">this is tech</div>
+            <div class="content-item">this is about</div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-1.10.1.min.js"></script>
+<script src="js/tabs.js"></script>
+<script>
+$(function() {
+    //var tab1 = new Tab($('.js-tab').eq(0));
+    //Tab.init($('.js-tab'))
+    $('.js-tab').tab()
+})
+</script>
+
+</html>
