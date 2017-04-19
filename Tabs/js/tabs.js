@@ -24,8 +24,21 @@
                 _this.invoke($(this))
             });
         } else if (config.triggerType === 'mouseover' || config.triggerType != 'click') {
-            this.tabItems.mouseover(function() {
-                _this.invoke($(this))
+            this.tabItems.mouseover(function(e) {
+
+                e.stopPropagation();
+
+                var self = $(this);
+                this.timer = window.setTimeout(function() {
+                    _this.invoke(self);
+                }, 300);
+
+            }).mouseout(function(e) {
+
+                e.stopPropagation();
+
+                window.clearTimeout(this.timer);
+
             });
         }
 
