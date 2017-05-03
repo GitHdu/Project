@@ -14,4 +14,4 @@
 
 - [jQuery插件Tab选项卡](https://githdu.github.io/project/Tabs/)
 
-- [React-Comment](https://githdu.github.io/project/React-Comment/build/)
+- [React-Comment](https://githdu.github.io/project/React-Comment/)
