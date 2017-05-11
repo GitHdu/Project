@@ -16,4 +16,3 @@
 
 - [React-Comment](https://githdu.github.io/project/React-Comment/)
 
-- [React-douban](https://githdu.github.io/project/React-douban/)
